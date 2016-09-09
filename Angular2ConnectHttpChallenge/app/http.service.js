@@ -24,17 +24,18 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', 'rxj
             function (_2) {}],
         execute: function() {
             PostService = (function () {
+                //private _followerUrl = "https://api.github.com/users/octocat/followers";
                 function PostService(_http) {
                     this._http = _http;
                     // underscore is standard for private
-                    this._url = "https://api.github.com/users/octocat";
-                    this._followerUrl = "https://api.github.com/users/octocat/followers";
+                    //private _url = "https://api.github.com/users/octocat";
+                    this._url = "https://api.github.com/users/";
                 }
-                PostService.prototype.getUsers = function () {
-                    return this._http.get(this._url).map(function (res) { return res.json(); });
+                PostService.prototype.getUsers = function (username) {
+                    return this._http.get(this._url + username).map(function (res) { return res.json(); });
                 };
-                PostService.prototype.getFollowers = function () {
-                    return this._http.get(this._followerUrl).map(function (res) { return res.json(); });
+                PostService.prototype.getFollowers = function (username) {
+                    return this._http.get(this._url + username + "/followers").map(function (res) { return res.json(); });
                 };
                 PostService = __decorate([
                     core_1.Injectable(), 

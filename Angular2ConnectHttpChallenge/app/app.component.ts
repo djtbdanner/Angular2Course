@@ -16,20 +16,17 @@ import {Observable} from 'rxjs/Rx';
                 <img class = 'avatar' src=" {{ posts.avatar_url }}" alt="{{posts.name}}" />
 
                 <h2>Followers</h2>
-                <div *ngIf="!isFollersLoaded">
-                    <div *ngFor = "#follower of followers" class="media" >
-                        <div class="media-left">
-                            <a href="#">
-                                <img class="avatar" src="{{ follower.avatar_url }}" alt="...">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">{{ follower.login }} </h4>
-                        </div>
+                <div *ngFor = "#follower of followers" class="media" >
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="avatar" src="{{ follower.avatar_url }}" alt="...">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ follower.login }} </h4>
                     </div>
                 </div>
             </div>
-        <br/> 
     `, 
     providers: [HTTP_PROVIDERS, PostService],
     styles :[".avatar{width:100px;height:100px;border-radius: 100%;}"]
@@ -41,30 +38,33 @@ export class AppComponent implements OnInit {
     posts: any[];
     followers: any[];
     isLoading = true;
-    isFollersLoaded = true;
+    username="ternsip";
 
     // injecting the service
     constructor(private _postService: PostService) {
     }
 
     ngOnInit() {
-        this._postService.getUsers().subscribe(posts  =>  {
-            this.posts = posts;
-            this.isLoading = false;
-        });
-        this._postService.getFollowers().subscribe(followers  =>  {
-            this.followers = followers;
-            this.isFollersLoaded = false;
-        });
+        // this._postService.getUsers().subscribe(posts  =>  {
+        //     this.posts = posts;
+        //     this.isLoading = false;
+        // });
+        // this._postService.getFollowers().subscribe(followers  =>  {
+        //     this.followers = followers;
+        //     this.isFollersLoaded = false;
+        // });
 
-        // Observable.forkJoin(
-        //     Observable.of({ 
-        //         this._postService.getUsers().subscribe()
-        //     }),
-        //     Observable.of({ 
-        //         userName: "Mosh" 
-        //     })
-        // ).subscribe(x => console.log(x[0]));
+        Observable.forkJoin(
+                this._postService.getUsers(this.username),
+                this._postService.getFollowers(this.username)
+        ).subscribe(
+            res=>{
+                this.posts=res[0];
+                this.followers=res[1];
+            },
+            null,
+            ()=>{this.isLoading = false}
+        );
     }
 }
 
