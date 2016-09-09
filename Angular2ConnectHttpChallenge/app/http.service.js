@@ -1,4 +1,4 @@
-System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], function(exports_1, context_1) {
+System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map', 'rxjs/add/observable/forkJoin'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -20,17 +20,21 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (_1) {}],
+            function (_1) {},
+            function (_2) {}],
         execute: function() {
             PostService = (function () {
-                // private _followerUrl = "https://api.github.com/users/octocat/followers";
                 function PostService(_http) {
                     this._http = _http;
                     // underscore is standard for private
                     this._url = "https://api.github.com/users/octocat";
+                    this._followerUrl = "https://api.github.com/users/octocat/followers";
                 }
                 PostService.prototype.getUsers = function () {
                     return this._http.get(this._url).map(function (res) { return res.json(); });
+                };
+                PostService.prototype.getFollowers = function () {
+                    return this._http.get(this._followerUrl).map(function (res) { return res.json(); });
                 };
                 PostService = __decorate([
                     core_1.Injectable(), 

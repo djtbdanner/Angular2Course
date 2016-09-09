@@ -29,18 +29,33 @@ System.register(['angular2/core', './http.service', 'angular2/http'], function(e
                 function AppComponent(_postService) {
                     this._postService = _postService;
                     this.isLoading = true;
+                    this.isFollersLoaded = true;
                 }
                 AppComponent.prototype.ngOnInit = function () {
-                    // this._postService.getUsers().subscribe(posts  =>  {
-                    //     this.posts  = posts
-                    //     this.isLoading = false;
-                    // });
+                    var _this = this;
+                    this._postService.getUsers().subscribe(function (posts) {
+                        _this.posts = posts;
+                        _this.isLoading = false;
+                    });
+                    this._postService.getFollowers().subscribe(function (followers) {
+                        _this.followers = followers;
+                        _this.isFollersLoaded = false;
+                    });
+                    // Observable.forkJoin(
+                    //     Observable.of({ 
+                    //         this._postService.getUsers().subscribe()
+                    //     }),
+                    //     Observable.of({ 
+                    //         userName: "Mosh" 
+                    //     })
+                    // ).subscribe(x => console.log(x[0]));
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "<h1>My First Angular 2 App</h1>\n        <div *ngIf=\"isLoading\">\n            asdf\n        </div>\n        <div *ngIf=\"!isLoading\">\n            {{posts | json}}\n        </div>\n\n        <br/>\n    ",
-                        providers: [http_1.HTTP_PROVIDERS, http_service_1.PostService]
+                        template: "\n        <i\u00A0*ngIf=\"isLoading\" class=\"fa fa-spinner fa-spin fa-4x\"></i>\t\n\n \u00A0\n            <div *ngIf=\"!isLoading\">\n                <h1>  {{ posts.login }} </h1>\n                <br/>\n                <img class = 'avatar' src=\" {{ posts.avatar_url }}\" alt=\"{{posts.name}}\" />\n\n                <h2>Followers</h2>\n                <div *ngIf=\"!isFollersLoaded\">\n                    <div *ngFor = \"#follower of followers\" class=\"media\" >\n                        <div class=\"media-left\">\n                            <a href=\"#\">\n                                <img class=\"avatar\" src=\"{{ follower.avatar_url }}\" alt=\"...\">\n                            </a>\n                        </div>\n                        <div class=\"media-body\">\n                            <h4 class=\"media-heading\">{{ follower.login }} </h4>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        <br/> \n    ",
+                        providers: [http_1.HTTP_PROVIDERS, http_service_1.PostService],
+                        styles: [".avatar{width:100px;height:100px;border-radius: 100%;}"]
                     }), 
                     __metadata('design:paramtypes', [http_service_1.PostService])
                 ], AppComponent);
