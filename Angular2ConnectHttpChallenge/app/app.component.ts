@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
     posts: any[];
     followers: any[];
     isLoading = true;
-    username="ternsip";
+    username="dandaluga";
 
     // injecting the service
     constructor(private _postService: PostService) {

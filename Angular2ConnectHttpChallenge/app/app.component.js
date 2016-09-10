@@ -32,7 +32,7 @@ System.register(['angular2/core', './http.service', 'angular2/http', 'rxjs/Rx'],
                 function AppComponent(_postService) {
                     this._postService = _postService;
                     this.isLoading = true;
-                    this.username = "ternsip";
+                    this.username = "dandaluga";
                 }
                 AppComponent.prototype.ngOnInit = function () {
                     // this._postService.getUsers().subscribe(posts  =>  {
