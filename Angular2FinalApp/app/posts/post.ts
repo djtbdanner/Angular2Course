@@ -5,6 +5,10 @@ export class Post {
     body: string;
 }
 
+export class PostHash{
+    index: number;
+    postsToShow: Post[];
+}
 
 /*
   {

@@ -12,10 +12,32 @@
                 {{ user.name }}
             </option>
         </select>
+
+
+        <nav aria-label="Page navigation" *ngIf="showPagenation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                <li *ngFor="#postToShow of showPagenation; #i = index">
+                    <a (click) = "checkPagenation(i)">{{i+1}}</a>
+                </li>
+
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
         <spinner [visible]="isPostsLoading"></spinner>
         <div class="col-md-6">
             <ul class="list-group posts">
-                <li *ngFor="#post of posts" class="list-group-item" [class.active]="currentPost == post" (click)="select(post)"> {{post.title}}
+                <li *ngFor="#post of postsToShow" class="list-group-item" [class.active]="currentPost == post" (click)="select(post)"> {{post.title}}
                 </li>
             </ul>
         </div>

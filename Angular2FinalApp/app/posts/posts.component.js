@@ -39,13 +39,42 @@ System.register(['angular2/core', 'angular2/http', './posts.http.service', '../u
                     this._userHttpService = _userHttpService;
                     this.isCommentLoading = false;
                     this.isPostsLoading = true;
+                    this.selectedPagenationIndex = 0;
                 }
                 PostsComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     Rx_1.Observable.forkJoin(this._userHttpService.getUsers(), this._postHttpService.getPosts()).subscribe(function (res) {
                         _this.posts = res[1];
                         _this.users = res[0];
-                    }, null, function () { _this.isPostsLoading = false; });
+                    }, null, function () {
+                        _this.isPostsLoading = false;
+                        _this.checkPagenation();
+                    });
+                };
+                PostsComponent.prototype.checkPagenation = function (pagenationIndex) {
+                    if (this.posts.length <= 10) {
+                        this.showPagenation = undefined;
+                        this.postsToShow = this.posts;
+                        return;
+                    }
+                    var me = this;
+                    var index = 0;
+                    var tempPosts = new Array();
+                    tempPosts = this.posts.slice();
+                    me.showPagenation = new Array();
+                    if (tempPosts && tempPosts.length > 10) {
+                        while (tempPosts.length) {
+                            var vals = new Array();
+                            vals = tempPosts.splice(0, 10);
+                            me.showPagenation.push(vals);
+                        }
+                    }
+                    if (!pagenationIndex) {
+                        this.postsToShow = me.showPagenation[0];
+                    }
+                    else {
+                        this.postsToShow = me.showPagenation[pagenationIndex];
+                    }
                 };
                 PostsComponent.prototype.select = function (post) {
                     var _this = this;
@@ -66,6 +95,7 @@ System.register(['angular2/core', 'angular2/http', './posts.http.service', '../u
                     this._postHttpService.getPosts(filter).subscribe(function (posts) {
                         _this.posts = posts;
                         _this.isPostsLoading = false;
+                        _this.checkPagenation();
                     });
                 };
                 PostsComponent = __decorate([
