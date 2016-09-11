@@ -15,8 +15,24 @@ export class UsersHttpService {
         return this._http.get(this._url).map(res => res.json());
     }
 
-    saveUser(user) {
-        // alert("saving "  + JSON.stringify(user));
+    addUser(user) {
         return this._http.post(this._url, JSON.stringify(user)).map(res => res.json());
+    }
+
+    saveUser(user, id) {
+        return this._http.put(this.getUserUrl(id), JSON.stringify(user)).map(res => res.json());
+    }
+
+    deleteUser(id) {
+        return this._http.delete(this.getUserUrl(id)).map(res => res.json());
+    }
+
+
+    getUser(id) {
+        return this._http.get(this.getUserUrl(id)).map(res => res.json());
+    }
+
+    private getUserUrl(userId) {
+        return this._url + "/" + userId;
     }
 }

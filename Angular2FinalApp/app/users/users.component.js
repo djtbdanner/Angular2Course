@@ -1,4 +1,4 @@
-System.register(['angular2/core', './users.http.service', 'angular2/http', 'angular2/router'], function(exports_1, context_1) {
+System.register(['angular2/core', './users.http.service', 'angular2/http', 'angular2/router', '../navbar/spinner.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './users.http.service', 'angular2/http', 'angu
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, users_http_service_1, http_1, router_1;
+    var core_1, users_http_service_1, http_1, router_1, spinner_component_1;
     var UsersComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', './users.http.service', 'angular2/http', 'angu
             },
             function (router_1_1) {
                 router_1 = router_1_1;
+            },
+            function (spinner_component_1_1) {
+                spinner_component_1 = spinner_component_1_1;
             }],
         execute: function() {
             UsersComponent = (function () {
@@ -35,7 +38,7 @@ System.register(['angular2/core', './users.http.service', 'angular2/http', 'angu
                 UsersComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._userHttpService.getUsers().subscribe(function (users) {
-                        _this.useras = users;
+                        _this.users = users;
                         _this.isLoading = false;
                     });
                 };
@@ -43,7 +46,7 @@ System.register(['angular2/core', './users.http.service', 'angular2/http', 'angu
                     core_1.Component({
                         templateUrl: 'app/users/users.component.html',
                         providers: [http_1.HTTP_PROVIDERS, users_http_service_1.UsersHttpService],
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        directives: [router_1.ROUTER_DIRECTIVES, spinner_component_1.SpinnerComponent]
                     }), 
                     __metadata('design:paramtypes', [users_http_service_1.UsersHttpService])
                 ], UsersComponent);

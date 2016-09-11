@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './home/home.component', './users/users.component', './posts/posts.component', './navbar/navbar.component', './users/adduser.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './home/home.component', './users/users.component', './posts/posts.component', './navbar/navbar.component', './users/adduser.component', './users/usernotfound.component', './users/deleteuser.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './home/home.component', '.
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, home_component_1, users_component_1, posts_component_1, navbar_component_1, adduser_component_1;
+    var core_1, router_1, home_component_1, users_component_1, posts_component_1, navbar_component_1, adduser_component_1, usernotfound_component_1, deleteuser_component_1;
     var AppComponent;
     return {
         setters:[
@@ -34,6 +34,12 @@ System.register(['angular2/core', 'angular2/router', './home/home.component', '.
             },
             function (adduser_component_1_1) {
                 adduser_component_1 = adduser_component_1_1;
+            },
+            function (usernotfound_component_1_1) {
+                usernotfound_component_1 = usernotfound_component_1_1;
+            },
+            function (deleteuser_component_1_1) {
+                deleteuser_component_1 = deleteuser_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -45,7 +51,10 @@ System.register(['angular2/core', 'angular2/router', './home/home.component', '.
                         { path: '/users', name: 'Users', component: users_component_1.UsersComponent },
                         { path: '/posts', name: 'Posts', component: posts_component_1.PostsComponent },
                         { path: '/users/new', name: 'UsersNew', component: adduser_component_1.AddUserComponent },
-                        { path: '/*other', name: 'Other', redirectTo: ['Home'] }
+                        { path: '/user/:userId', name: 'UserEdit', component: adduser_component_1.AddUserComponent },
+                        { path: '/*other', name: 'Other', redirectTo: ['Home'] },
+                        { path: '/notfound', name: 'NotFound', component: usernotfound_component_1.UserNotFoundComponent },
+                        { path: '/delete/:userId', name: 'UserDelete', component: deleteuser_component_1.DeleteUserComponent },
                     ]),
                     core_1.Component({
                         selector: 'my-app',

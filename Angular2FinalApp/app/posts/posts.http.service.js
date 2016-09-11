@@ -11,7 +11,7 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var http_1, core_1;
-    var UsersHttpService;
+    var PostsHttpService;
     return {
         setters:[
             function (http_1_1) {
@@ -22,37 +22,28 @@ System.register(['angular2/http', 'angular2/core', 'rxjs/add/operator/map'], fun
             },
             function (_1) {}],
         execute: function() {
-            UsersHttpService = (function () {
-                function UsersHttpService(_http) {
+            PostsHttpService = (function () {
+                function PostsHttpService(_http) {
                     this._http = _http;
-                    this._url = "https://jsonplaceholder.typicode.com/users";
+                    this._url = "http://jsonplaceholder.typicode.com/posts";
                 }
-                UsersHttpService.prototype.getUsers = function () {
+                PostsHttpService.prototype.getPosts = function (filter) {
+                    if (filter && filter.userId) {
+                        return this._http.get(this._url + "?userId=" + filter.userId).map(function (res) { return res.json(); });
+                    }
                     return this._http.get(this._url).map(function (res) { return res.json(); });
                 };
-                UsersHttpService.prototype.addUser = function (user) {
-                    return this._http.post(this._url, JSON.stringify(user)).map(function (res) { return res.json(); });
+                PostsHttpService.prototype.getPostComments = function (postId) {
+                    return this._http.get(this._url + "/" + postId + "/comments").map(function (res) { return res.json(); });
                 };
-                UsersHttpService.prototype.saveUser = function (user, id) {
-                    return this._http.put(this.getUserUrl(id), JSON.stringify(user)).map(function (res) { return res.json(); });
-                };
-                UsersHttpService.prototype.deleteUser = function (id) {
-                    return this._http.delete(this.getUserUrl(id)).map(function (res) { return res.json(); });
-                };
-                UsersHttpService.prototype.getUser = function (id) {
-                    return this._http.get(this.getUserUrl(id)).map(function (res) { return res.json(); });
-                };
-                UsersHttpService.prototype.getUserUrl = function (userId) {
-                    return this._url + "/" + userId;
-                };
-                UsersHttpService = __decorate([
+                PostsHttpService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [http_1.Http])
-                ], UsersHttpService);
-                return UsersHttpService;
+                ], PostsHttpService);
+                return PostsHttpService;
             }());
-            exports_1("UsersHttpService", UsersHttpService);
+            exports_1("PostsHttpService", PostsHttpService);
         }
     }
 });
-//# sourceMappingURL=users.http.service.js.map
+//# sourceMappingURL=posts.http.service.js.map

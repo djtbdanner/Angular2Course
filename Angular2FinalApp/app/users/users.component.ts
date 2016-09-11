@@ -3,24 +3,27 @@ import {UsersHttpService} from './users.http.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Observable} from 'rxjs/Rx';
-import {AddUserComponent} from './adduser.component'
+import {AddUserComponent} from './adduser.component';
+import {User} from './user';
+import {SpinnerComponent} from '../navbar/spinner.component'
 
 @Component({
     templateUrl: 'app/users/users.component.html',
     providers: [HTTP_PROVIDERS, UsersHttpService],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES, SpinnerComponent]
 })
 export class UsersComponent implements OnInit {
 
-    useras: any[];
+    users: User[];
     isLoading = true;
 
     constructor(private _userHttpService: UsersHttpService) { }
 
     ngOnInit() {
         this._userHttpService.getUsers().subscribe(users => {
-            this.useras = users;
+            this.users = users;
             this.isLoading = false;
         });
     }
+
 }  
