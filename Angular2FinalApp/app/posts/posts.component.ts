@@ -32,10 +32,11 @@ export class PostsComponent implements OnInit {
     currentPost: Post;
     postComments: PostComment[];
     users: User[];
-    showPagenation: any[];
     selectedPagenationIndex = 0;
     postHash: PostHash;
     postsToShow:Post[];
+    pagenationElements:any[];
+    showPagenation = false;
 
     constructor(private _postHttpService: PostsHttpService, private _userHttpService: UsersHttpService) {
 
@@ -61,28 +62,21 @@ export class PostsComponent implements OnInit {
     checkPagenation(pagenationIndex?) {
    
         if(this.posts.length <= 10){
-            this.showPagenation = undefined;
+            this.pagenationElements = undefined;
             this.postsToShow =this.posts;
+            this.showPagenation = false;
             return;
         }
-
-        var me = this;
-        var index = 0;
-        var tempPosts = new Array();
-        tempPosts = this.posts.slice();
-        me.showPagenation = new Array();
-        if (tempPosts && tempPosts.length > 10) {
-            while (tempPosts.length) {
-                var vals = new Array();
-                vals = tempPosts.splice(0, 10);
-                me.showPagenation.push(vals);
-            }
+        if(!pagenationIndex){
+            pagenationIndex = 0;
         }
-        if (!pagenationIndex){
-              this.postsToShow =  me.showPagenation[0];
-        } else {
-            this.postsToShow = me.showPagenation[pagenationIndex];
+        this.showPagenation = true;
+        var pagenationCount = this.posts.length /10;
+        this.pagenationElements = new Array();
+        for (var i = 0; i < pagenationCount; i++){
+            this.pagenationElements.push(i);
         }
+        this.postsToShow = this.posts.slice(pagenationIndex*10,pagenationIndex*10+ 10);
     }
 
     select(post) {

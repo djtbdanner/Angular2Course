@@ -40,6 +40,7 @@ System.register(['angular2/core', 'angular2/http', './posts.http.service', '../u
                     this.isCommentLoading = false;
                     this.isPostsLoading = true;
                     this.selectedPagenationIndex = 0;
+                    this.showPagenation = false;
                 }
                 PostsComponent.prototype.ngOnInit = function () {
                     var _this = this;
@@ -53,28 +54,21 @@ System.register(['angular2/core', 'angular2/http', './posts.http.service', '../u
                 };
                 PostsComponent.prototype.checkPagenation = function (pagenationIndex) {
                     if (this.posts.length <= 10) {
-                        this.showPagenation = undefined;
+                        this.pagenationElements = undefined;
                         this.postsToShow = this.posts;
+                        this.showPagenation = false;
                         return;
                     }
-                    var me = this;
-                    var index = 0;
-                    var tempPosts = new Array();
-                    tempPosts = this.posts.slice();
-                    me.showPagenation = new Array();
-                    if (tempPosts && tempPosts.length > 10) {
-                        while (tempPosts.length) {
-                            var vals = new Array();
-                            vals = tempPosts.splice(0, 10);
-                            me.showPagenation.push(vals);
-                        }
-                    }
                     if (!pagenationIndex) {
-                        this.postsToShow = me.showPagenation[0];
+                        pagenationIndex = 0;
                     }
-                    else {
-                        this.postsToShow = me.showPagenation[pagenationIndex];
+                    this.showPagenation = true;
+                    var pagenationCount = this.posts.length / 10;
+                    this.pagenationElements = new Array();
+                    for (var i = 0; i < pagenationCount; i++) {
+                        this.pagenationElements.push(i);
                     }
+                    this.postsToShow = this.posts.slice(pagenationIndex * 10, pagenationIndex * 10 + 10);
                 };
                 PostsComponent.prototype.select = function (post) {
                     var _this = this;

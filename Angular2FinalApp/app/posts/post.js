@@ -1,7 +1,7 @@
 System.register([], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
-    var Post, PostHash;
+    var Post;
     return {
         setters:[],
         execute: function() {
@@ -11,12 +11,6 @@ System.register([], function(exports_1, context_1) {
                 return Post;
             }());
             exports_1("Post", Post);
-            PostHash = (function () {
-                function PostHash() {
-                }
-                return PostHash;
-            }());
-            exports_1("PostHash", PostHash);
         }
     }
 });

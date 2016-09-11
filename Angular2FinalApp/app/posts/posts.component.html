@@ -22,8 +22,8 @@
                     </a>
                 </li>
 
-                <li *ngFor="#postToShow of showPagenation; #i = index">
-                    <a (click) = "checkPagenation(i)">{{i+1}}</a>
+                <li *ngFor="#count of pagenationElements;">
+                    <a (click) = "checkPagenation(count)">{{count}}</a>
                 </li>
 
                 <li>
