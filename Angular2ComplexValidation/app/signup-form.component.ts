@@ -23,6 +23,7 @@ export class SignUpFormComponent {
         })
     }
 
+    // this is basically a fake error when clicking the submit button
     signup() {
         this.form.find("username").setErrors({invalidLogin:true});
         console.log(this.form.value);

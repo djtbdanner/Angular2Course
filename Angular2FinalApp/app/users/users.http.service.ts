@@ -12,6 +12,11 @@ export class UsersHttpService {
     }
 
     getUsers() {
-         return this._http.get(this._url).map(res => res.json());
+        return this._http.get(this._url).map(res => res.json());
+    }
+
+    saveUser(user) {
+        // alert("saving "  + JSON.stringify(user));
+        return this._http.post(this._url, JSON.stringify(user)).map(res => res.json());
     }
 }
