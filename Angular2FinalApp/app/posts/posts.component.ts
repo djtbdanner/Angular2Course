@@ -33,7 +33,6 @@ export class PostsComponent implements OnInit {
     postComments: PostComment[];
     users: User[];
     selectedPagenationIndex = 0;
-    postHash: PostHash;
     postsToShow:Post[];
     pagenationElements:any[];
     showPagenation = false;
@@ -60,7 +59,6 @@ export class PostsComponent implements OnInit {
     }
 
     checkPagenation(pagenationIndex?) {
-   
         if(this.posts.length <= 10){
             this.pagenationElements = undefined;
             this.postsToShow =this.posts;
@@ -71,6 +69,7 @@ export class PostsComponent implements OnInit {
             pagenationIndex = 0;
         }
         this.showPagenation = true;
+        this.selectedPagenationIndex=pagenationIndex;
         var pagenationCount = this.posts.length /10;
         this.pagenationElements = new Array();
         for (var i = 0; i < pagenationCount; i++){

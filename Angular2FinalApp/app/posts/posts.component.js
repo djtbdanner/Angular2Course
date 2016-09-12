@@ -63,6 +63,7 @@ System.register(['angular2/core', 'angular2/http', './posts.http.service', '../u
                         pagenationIndex = 0;
                     }
                     this.showPagenation = true;
+                    this.selectedPagenationIndex = pagenationIndex;
                     var pagenationCount = this.posts.length / 10;
                     this.pagenationElements = new Array();
                     for (var i = 0; i < pagenationCount; i++) {

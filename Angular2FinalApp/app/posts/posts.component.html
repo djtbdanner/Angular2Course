@@ -16,18 +16,18 @@
 
         <nav aria-label="Page navigation" *ngIf="showPagenation">
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
+                <li [class.disabled]="selectedPagenationIndex == 0">
+                    <a aria-label="Previous"(click) = "checkPagenation(selectedPagenationIndex - 1)">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
 
-                <li *ngFor="#count of pagenationElements;">
+                <li *ngFor="#count of pagenationElements;" [class.active] = "count == selectedPagenationIndex">
                     <a (click) = "checkPagenation(count)">{{count}}</a>
                 </li>
 
-                <li>
-                    <a href="#" aria-label="Next">
+                <li  [class.disabled]="selectedPagenationIndex + 2 > pagenationElements.length">
+                    <a aria-label="Next" (click) = "checkPagenation(selectedPagenationIndex + 1)" disabled>
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
