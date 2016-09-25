@@ -4,8 +4,8 @@
   <base href="/">
   <title>ngProject</title>
 
-  <link rel="stylesheet" href="app/assets/styles/bootstrap.css">
-  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/app/assets/styles/bootstrap.css">
+  <link rel="stylesheet" href="/app/assets/styles/font-awesome.min.css">
   <style>
     body {
       padding: 30px;
@@ -17,13 +17,19 @@
     <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
 	-->
 
-  <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+  <!--<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
   <script src="node_modules/systemjs/dist/system.src.js"></script>
   <script src="node_modules/rxjs/bundles/Rx.js"></script>
   <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
   <script src="node_modules/angular2/bundles/router.dev.js"></script>
-  <!--<script src="node_modules/angular2/bundles/http.js"></script> -->
-  <script src="node_modules/angular2/bundles/http.dev.js"></script>
+  <script src="node_modules/angular2/bundles/http.dev.js"></script>-->
+
+  <script src="/app/assets/js/angular2-polyfills.js"></script>
+  <script src="/app/assets/js/system.src.js"></script>
+  <script src="/app/assets/js/rxjs/bundles/Rx.js"></script>
+  <script src="/app/assets/js/angular2.dev.js"></script>
+  <script src="/app/assets/js/router.dev.js"></script>
+  <script src="/app/assets/js/http.dev.js"></script>
 
   <!-- 2. Configure SystemJS -->
   <script>
@@ -35,7 +41,7 @@
           }
         }
       });
-      System.import('app/boot')
+      System.import('/app/boot')
             .then(null, console.error.bind(console));
     </script>
 

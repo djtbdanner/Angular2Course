@@ -27,3 +27,5 @@ local.properties
 *.launch
 
 node_modules/**
+node_modules/*
+*/node_modules/**
