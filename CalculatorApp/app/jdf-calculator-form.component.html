@@ -1,0 +1,40 @@
+ <div class="jumbotron">
+    <h2>Calculator</h2>
+    <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
+      <div class="form-group">
+        <label>Loan Amount:</label>
+        <input type="text" class="form-control" placeholder="" name="loanAmount" ngModel required>
+      </div>
+      <div class="form-group">
+        <label>Interest Rate:</label>
+        <input type="text" class="form-control" placeholder="" name="interestRate" ngModel required>
+      </div>
+      <div class="form-group">
+        <label>Number of Payments:</label>
+        <input type="text" class="form-control" placeholder="" name="numberOfPayments" ngModel required>
+      </div>
+      <div class="form-group">
+        <label>Frequency</label>
+      </div>
+      <label class="checkbox-inline">
+        <input type="radio" value="monthly" name="paymentFrequency" ngModel> Monthly 
+      </label>
+      <label class="checkbox-inline">
+        <input type="radio" value="quarterly" name="paymentFrequency" ngModel> Quarterly
+      </label>
+      <label class="checkbox-inline">
+        <input type="radio" value="annually" name="paymentFrequency" ngModel> Annually
+      </label>
+      <div class="form-group">
+        <button type="button" class="btn btn-default" (click) = "calculateLoan()">Calculate</button>
+      </div>
+
+    <ul>
+      <li *ngFor="let payment of payments">
+        {{ payment.paymentNumber }}, {{payment.principal}}, {{payment.interest}},{{payment.balance}}, {{payment.dueDate}}
+      </li>
+    </ul>
+
+    </form>
+  </div>
+
