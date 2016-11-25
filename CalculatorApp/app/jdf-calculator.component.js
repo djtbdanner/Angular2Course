@@ -9,15 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var jdf_calculator_classes_1 = require('./jdf-calculator.classes');
 var jdf_calculator_service_1 = require('./jdf-calculator.service');
 var JDFCalculator = (function () {
     function JDFCalculator(_calculatorService) {
         this._calculatorService = _calculatorService;
     }
     JDFCalculator.prototype.calculateLoan = function () {
-        this.loan = new jdf_calculator_classes_1.Loan();
-        this.payments = this._calculatorService.calculate(this.loan);
+        this.payments = this._calculatorService.calculate();
     };
     JDFCalculator = __decorate([
         core_1.Component({

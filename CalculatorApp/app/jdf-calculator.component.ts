@@ -15,7 +15,6 @@ export class JDFCalculator  {
   loan: Loan;
 
   calculateLoan(){
-    this.loan = new Loan();
-    this.payments = this._calculatorService.calculate(this.loan);
+    this.payments = this._calculatorService.calculate();
   }
 }

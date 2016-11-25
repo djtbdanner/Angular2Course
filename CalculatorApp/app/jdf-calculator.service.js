@@ -12,8 +12,7 @@ var core_1 = require('@angular/core');
 var JDFCalculatorService = (function () {
     function JDFCalculatorService() {
     }
-    JDFCalculatorService.prototype.calculate = function (Loan) {
-        if (Loan === void 0) { Loan = loan; }
+    JDFCalculatorService.prototype.calculate = function () {
         return [
             { "paymentNumber": 1, "principal": 100, "interest": 10, "balance": 500, "dueDate": "08/17/1963" },
             { "paymentNumber": 2, "principal": 100, "interest": 9, "balance": 410, "dueDate": "08/17/1963" },
@@ -23,7 +22,6 @@ var JDFCalculatorService = (function () {
             { "paymentNumber": 6, "principal": 100, "interest": 5, "balance": 37, "dueDate": "08/17/1963" },
             { "paymentNumber": 7, "principal": 38, "interest": 1, "balance": 0, "dueDate": "08/17/1963" }
         ];
-        0;
     };
     JDFCalculatorService = __decorate([
         core_1.Injectable(), 

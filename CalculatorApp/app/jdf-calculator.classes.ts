@@ -1,14 +1,14 @@
-class Payment {
-    paymentNumber: integer;
+export class Payment {
+    paymentNumber: number;
     principal: number;
     interest: number;
     balance: number;
-    dueDate: date;
+    dueDate: string;
 }
 
-class Loan {
+export class Loan {
     amount: number;
     interest: number;
-    payments: integer;
+    payments: number;
 }
 
