@@ -1,0 +1,1 @@
+{"version":3,"file":"photos.routing.js","sourceRoot":"","sources":["photos.routing.ts"],"names":[],"mappings":";AAAA,uBAAmC,iBAAiB,CAAC,CAAA;AACrD,iCAA8B,oBAAoB,CAAC,CAAA;AACnD,wCAAoC,2BAA2B,CAAC,CAAA;AAEnD,qBAAa,GAAG,qBAAY,CAAC,QAAQ,CAAC;IAE/C,EAAC,IAAI,EAAE,YAAY,EAAE,SAAS,EAAE,+CAAqB,EAAC;IACtD,EAAC,IAAI,EAAE,QAAQ,EAAE,SAAS,EAAE,kCAAe,EAAC;CAE/C,CAAC,CAAA"}
