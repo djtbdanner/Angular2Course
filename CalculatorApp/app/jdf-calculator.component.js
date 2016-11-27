@@ -8,17 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var jdf_calculator_classes_1 = require('./jdf-calculator.classes');
-var jdf_calculator_service_1 = require('./jdf-calculator.service');
+var core_1 = require("@angular/core");
+var jdf_calculator_classes_1 = require("./jdf-calculator.classes");
+var jdf_calculator_service_1 = require("./jdf-calculator.service");
 var JDFCalculator = (function () {
     function JDFCalculator(_calculatorService) {
         this._calculatorService = _calculatorService;
         this.loan = new jdf_calculator_classes_1.Loan;
     }
-    // loanAmount;
     JDFCalculator.prototype.calculateLoan = function () {
         if (this.loan.amount > 0 && this.loan.interest > 0 && this.loan.payments > 0) {
+            if (this.loan.startDate === undefined) {
+                this.loan.startDate = new Date();
+            }
             this.payments = this._calculatorService.calculate(this.loan);
         }
     };
@@ -27,21 +29,27 @@ var JDFCalculator = (function () {
         this.calculateLoan();
     };
     JDFCalculator.prototype.changeLoanInterest = function (value) {
-        this.loan.interest = value;
+        this.loan.interest = value / 100;
         this.calculateLoan();
     };
     JDFCalculator.prototype.changeLoanPayment = function (value) {
         this.loan.payments = value;
         this.calculateLoan();
     };
-    JDFCalculator = __decorate([
-        core_1.Component({
-            selector: 'jdf-calculator',
-            templateUrl: 'app/jdf-calculator-form.component.html'
-        }), 
-        __metadata('design:paramtypes', [jdf_calculator_service_1.JDFCalculatorService])
-    ], JDFCalculator);
+    JDFCalculator.prototype.changeStartDate = function (value) {
+        var dateArray = value.split(/\D/);
+        var date = new Date(parseInt(dateArray[0], 10), parseInt(dateArray[1], 10), parseInt(dateArray[2], 10));
+        this.loan.startDate = date;
+        this.calculateLoan();
+    };
     return JDFCalculator;
 }());
+JDFCalculator = __decorate([
+    core_1.Component({
+        selector: 'jdf-calculator',
+        templateUrl: 'app/jdf-calculator-form.component.html'
+    }),
+    __metadata("design:paramtypes", [jdf_calculator_service_1.JDFCalculatorService])
+], JDFCalculator);
 exports.JDFCalculator = JDFCalculator;
 //# sourceMappingURL=jdf-calculator.component.js.map
