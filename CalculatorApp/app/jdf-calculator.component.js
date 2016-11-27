@@ -9,13 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var jdf_calculator_classes_1 = require('./jdf-calculator.classes');
 var jdf_calculator_service_1 = require('./jdf-calculator.service');
 var JDFCalculator = (function () {
     function JDFCalculator(_calculatorService) {
         this._calculatorService = _calculatorService;
+        this.loan = new jdf_calculator_classes_1.Loan;
     }
+    // loanAmount;
     JDFCalculator.prototype.calculateLoan = function () {
-        this.payments = this._calculatorService.calculate();
+        if (this.loan.amount > 0 && this.loan.interest > 0 && this.loan.payments > 0) {
+            this.payments = this._calculatorService.calculate(this.loan);
+        }
+    };
+    JDFCalculator.prototype.changeLoanAmount = function (value) {
+        this.loan.amount = value;
+        this.calculateLoan();
+    };
+    JDFCalculator.prototype.changeLoanInterest = function (value) {
+        this.loan.interest = value;
+        this.calculateLoan();
+    };
+    JDFCalculator.prototype.changeLoanPayment = function (value) {
+        this.loan.payments = value;
+        this.calculateLoan();
     };
     JDFCalculator = __decorate([
         core_1.Component({

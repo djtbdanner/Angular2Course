@@ -9,12 +9,32 @@ import { JDFCalculatorService } from './jdf-calculator.service';
 })
 export class JDFCalculator  {
 
-  constructor (private _calculatorService: JDFCalculatorService){}
+  constructor (private _calculatorService: JDFCalculatorService){
+    this.loan = new Loan;
+  }
 
   payments: Payment[];
-  loan: Loan;
+  loan:Loan;
+ // loanAmount;
+  
 
   calculateLoan(){
-    this.payments = this._calculatorService.calculate();
+    if (this.loan.amount > 0 && this.loan.interest > 0 && this.loan.payments > 0){
+      this.payments = this._calculatorService.calculate(this.loan);
+    }
   }
+
+  changeLoanAmount(value:number){
+    this.loan.amount = value;
+    this.calculateLoan();
+  }
+  changeLoanInterest(value:number){    
+    this.loan.interest = value;
+    this.calculateLoan();
+  }
+  changeLoanPayment(value:number){   
+    this.loan.payments = value;
+    this.calculateLoan();
+  }
+
 }

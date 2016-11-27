@@ -3,15 +3,15 @@
     <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
       <div class="form-group">
         <label>Loan Amount:</label>
-        <input type="text" class="form-control" placeholder="" name="loanAmount" ngModel required>
+        <input type="text" class="form-control" placeholder="Loan Amount" #loanAmount  name="loanAmount" (change) = "changeLoanAmount(loanAmount.value)" ngModel required>
       </div>
       <div class="form-group">
         <label>Interest Rate:</label>
-        <input type="text" class="form-control" placeholder="" name="interestRate" ngModel required>
+        <input type="text" class="form-control" placeholder="" #interestRate name="interestRate"  (change) = "changeLoanInterest(interestRate.value)" ngModel required>
       </div>
       <div class="form-group">
         <label>Number of Payments:</label>
-        <input type="text" class="form-control" placeholder="" name="numberOfPayments" ngModel required>
+        <input type="text" class="form-control" placeholder="" #numberOfPayments name="numberOfPayments"  (change) = "changeLoanPayment(numberOfPayments.value)" ngModel required>
       </div>
       <div class="form-group">
         <label>Frequency</label>
