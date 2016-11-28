@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var jdf_calculator_classes_1 = require("./jdf-calculator.classes");
+var core_1 = require('@angular/core');
+var jdf_calculator_classes_1 = require('./jdf-calculator.classes');
 var JDFCalculatorService = (function () {
     function JDFCalculatorService() {
     }
@@ -49,11 +49,11 @@ var JDFCalculatorService = (function () {
         }
         return date;
     };
+    JDFCalculatorService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], JDFCalculatorService);
     return JDFCalculatorService;
 }());
-JDFCalculatorService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], JDFCalculatorService);
 exports.JDFCalculatorService = JDFCalculatorService;
 //# sourceMappingURL=jdf-calculator.service.js.map

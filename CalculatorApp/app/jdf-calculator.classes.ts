@@ -1,5 +1,3 @@
-import {Control} from '@angular/common'
-
 export class Payment {
     paymentNumber: number;
     amount: number;
